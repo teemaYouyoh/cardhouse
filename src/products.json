@@ -1,0 +1,39 @@
+{
+    "products" : [
+        {
+            "id": 1,
+            "name":"Bycicle Second",
+            "manufacturer":"Bycicle",
+            "price":"90",
+            "country":"USA",
+            "image":"https://images-na.ssl-images-amazon.com/images/I/61agYuPUFXL._SX425_.jpg"
+        },
+        {
+            "id": 2,
+            "name":"Bycicle Second",
+            "manufacturer":"Bycicle",
+            "price":"90",
+            "country":"USA",
+            "image":"https://images-na.ssl-images-amazon.com/images/I/61agYuPUFXL._SX425_.jpg"
+
+
+        },
+        {
+            "id": 3,
+            "name":"Bycicle Second",
+            "manufacturer":"Bycicle",
+            "price":"90",
+            "country":"USA",
+            "image":"https://images-na.ssl-images-amazon.com/images/I/61agYuPUFXL._SX425_.jpg"
+        },
+        {
+            "id": 4,
+            "name":"Bycicle Second",
+            "manufacturer":"Bycicle",
+            "price":"90",
+            "country":"USA",
+            "image":"https://images-na.ssl-images-amazon.com/images/I/61agYuPUFXL._SX425_.jpg"
+        }
+    ]
+}
+

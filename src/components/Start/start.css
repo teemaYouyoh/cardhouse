@@ -1,0 +1,326 @@
+
+html,
+body{
+	margin: 0;
+	padding: 0;	
+	/* font-family: 'Exo 2', sans-serif; */
+	background-color: #E0E0E0;
+	line-height: 1.5;
+    color: #212529;
+}
+
+h2{
+	color: #3c4858;
+	font-size: 44px;
+}
+/* 
+.products{	
+    display: flex;
+    flex-direction: column;
+    min-height: 100%
+} */
+
+/* WRAPPER */
+
+main{
+	display: flex;
+	flex-direction: column;
+}
+
+/* PROPOSE */
+
+.propose-wrapper{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	padding: 50px 0;
+	justify-content: space-between;
+
+}
+
+.propose-item{
+	flex-basis: 345px;
+	margin-right: 30px;
+	display: flex;
+	flex-direction: column;
+}
+.propose-item:last-child{
+	margin-right: 0;
+}
+
+.propose-item img{
+	width: 345px;
+	filter: grayscale(100%);
+	transition: 0.5s;
+	cursor: pointer;
+}
+.propose-item img:hover{
+	filter: grayscale(0);
+}
+
+.propose-item .item-label{
+	margin: 15px 0;
+	font-size: 16px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.propose-item .item-label a{
+	color: #1b95e0;
+	transition: 0.2s color;
+}
+.propose-item .item-label a:hover{
+	color: #13689c;
+}
+
+/* new-products-wrapper */
+
+.new-products-wrapper{
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+}
+
+.new-products-title{
+	margin-top: 0;
+}
+
+.new-products-row{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+
+/* NEWS-SLIDER */
+
+.news-slider{
+	margin-top: 70px;
+
+}
+
+
+.news-slider{
+	color: white;
+	font-size: 20px;
+}
+
+.news-slider .slide-container{
+	margin: 0 auto;
+	width: 1300px;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	align-items : center;
+	color : white;
+
+}
+
+
+.news-slider .slide-contant{
+	display: flex;
+	flex-direction: column;
+	align-items:center;
+	text-align: center;
+}
+
+.slide-container img{
+	width: 70px;
+}
+
+.slide-container .slide-title{
+	max-width: 400px;
+	padding: 20px 0;
+}
+
+.slide-container .slide-button{
+	width: 100px;
+	padding: 10px 10px;
+	border: 2px #1b95e0 solid; 
+	text-transform: uppercase;
+	background-color: #1b95e0;
+	color : white;
+	border-radius: 5px;
+	transition: 0.2s;
+	font-size: 18px;
+
+}
+
+.slide-container .slide-button:hover{
+	background:none;
+}
+	
+.news-slider .my-slide_1,
+.news-slider .my-slide_2,
+.news-slider .my-slide_3{
+	min-height: 405px;
+	max-height: 450px;
+	background-size: cover;
+	background-position:center;
+	
+	display: flex;
+	justify-content: flex-end;
+}
+
+.news-slider .my-slide_1{
+	background-image: url('https://media.decemberboys.com.ua/content/slides/51d325b3-a79e-4f9f-a655-64fc7e684097.jpg');
+
+}
+.news-slider .my-slide_2{
+	background-image: url('https://media.decemberboys.com.ua/content/slides/af74d609-bb99-4f1d-81e8-a99962914b9c.jpg');
+}
+.news-slider .my-slide_3{
+	background-image: url('https://media.decemberboys.com.ua/content/slides/8843375c-e9b6-4640-8242-c8798d13354e.jpg');
+}
+
+/* advantages */
+
+.advantages{
+	display: flex;
+	flex-direction: column;
+}
+
+.advantages .container{	
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	padding: 50px 0;
+
+}
+
+.advantages .advantages-item{
+	text-align: center;
+}
+
+.advantages-title{
+	margin-top: 10px; 
+	color: #3c4858;
+	font-weight: bold;
+}
+
+.advantages-text{
+	margin-top: 5px;
+	color: #999;
+}
+
+
+
+.fa-check-square,
+.fa-truck,
+.fa-question-circle{
+	font-size: 32px;
+}
+
+.fa-check-square{
+	color: #DE4B39;
+}
+
+.fa-truck{
+	color: #55ACEF;
+}
+
+.fa-question-circle{
+	color: #EC5B93;
+}
+
+/* MADE-IN PARALLAX*/
+
+.made-in_parallax {		
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+
+	height: 720px;
+	
+	background-attachment: fixed;
+	background-position: top;	background-image: url("../../images/bg3.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+
+
+/* CONTACT */
+
+.contactus{
+	height: 1080px;
+	background-image: url("/src/images/contactus-bg.jpg");
+	background-position: center center;
+    background-size: cover;
+    text-align: center;
+}
+
+.contactus .container{	
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.contactus .title{
+    font-size: 64px;
+    color: white;
+    font-weight: bold;
+    padding-top: 100px;
+}
+
+input:focus,
+textarea:focus{
+	outline-color: red;
+}
+
+.contactus .contactus-form{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	width: 500px;
+	height: 400px;
+	margin-top: 50px;
+	padding: 50px 0 30px;
+	background: #000;
+	opacity: 0.8;
+}
+
+.contactus .contactus-form input{
+	width: 70%;
+	margin-bottom: 20px;
+	height: 30px;
+	padding: 0 20px;
+	font-size: 14px;
+
+}
+
+.contactus .contactus-form textarea{
+	width: 352px;
+	resize: none;
+	padding: 5px 20px 0;
+	font-size: 14px;
+}
+
+.contactus .contactus-form button{
+	margin-top: 20px;
+	font-size: 16px;
+	padding: 5px;
+
+}
+
+
+@media only screen and (max-width : 1366px) {
+	
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+	
+}	
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+	
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 480px) {
+	
+}
