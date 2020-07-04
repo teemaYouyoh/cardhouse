@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import ShopService from '../../services/ShopService';
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
-import './product-page.css';
+import ShopService from '../../services/ShopService';
+
+import './product-page.scss';
 
 export default class ProductPage extends Component {
   state = {
     product: {},
+    amount: 1,
+    purchaseButtonText: 'Купити',
   }
 
   ShopService = new ShopService();
@@ -30,59 +33,132 @@ export default class ProductPage extends Component {
     this.setState({
       product,
     });
+
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    if (cart.find((item) => item._id === product._id)) { // проверка на наличие товара в корзине
+      const purchaseButtonText = <span>Куплено <FontAwesomeIcon icon={faShoppingCart}/></span>;
+      this.setState({
+        purchaseButtonText,
+      });
+    }
+  }
+
+  handleChange = (event) => {
+    event.persist();
+    const { product } = this.state;
+    let amount = event.target.value;
+
+    amount = amount >= 1 && amount <= 100 ? amount : 1;
+
+    this.setState({
+      amount,
+    });
+  }
+
+  handleClick = (event) => {
+    event.persist();
+    const action = event.target.name;
+    let { amount } = this.state;
+
+    if (action === 'minus') {
+      amount = +amount > 1 ? +amount - 1 : 1;
+    } else if (action === 'plus') {
+      amount = +amount < 100 ? +amount + 1 : 100;
+    }
+
+    this.setState({
+      amount,
+    });
+  }
+
+  purchase = () => {
+    const { product, amount } = this.state;
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    if (!cart.find((item) => item._id === product._id)) { // проверка на наличие товара в корзине
+      product.amount = amount;
+      cart.push(product);
+      localStorage.setItem('cart', JSON.stringify(cart));
+    }
+
+    const purchaseButtonText = <span>Куплено <FontAwesomeIcon icon={faShoppingCart}/></span>;
+    this.setState({
+      purchaseButtonText,
+    });
   }
 
   render() {
-    const { name, manufacturer, country, price, image } = this.state.product;
+    const { name, manufacturer, country, price, amount, image, text } = this.state.product;
 
     return (
-      <div>
-        <Header/>
-        <main>
-          <div className="product-wrapper">
-            <div className="container">
-              <div className="product-info">
+      <main>
+        <section className="product">
+          <div className="container">
+            <div className="product-wrapper">
+              <img className="product-image" src={image} alt={name}/>
 
-                <div className="product-image">
-                  <img src={image} alt={name}></img>
+              <div className="short-info">
+                <h2 className="product-title">{name}</h2>
+                <div className="product-characteristics">
+
+                  <div className="characteristics-item">
+                    <div className="option">Назва</div>
+                    <div className="value">{name}</div>
+                  </div>
+
+                  <div className="characteristics-item">
+                    <div className="option">Виробник</div>
+                    <div className="value">{manufacturer}</div>
+                  </div>
+
+                  <div className="characteristics-item">
+                    <div className="option">Країна</div>
+                    <div className="value">{country}</div>
+                  </div>
+
                 </div>
-                <div className="product-main-info">
-                  <div className="product-title">{name}</div>
-                  <div className="product-characteristics">
-                    <div className="options">
-                      <div className="characteristics-item">Назва</div>
-                      <div className="characteristics-item">Виробник</div>
-                      <div className="characteristics-item">Країна</div>
-                      <div className="characteristics-item">Упаковка</div>
-                      <div className="characteristics-item">Матеріал</div>
-                    </div>
 
-                    <div className="value">
-                      <div className="characteristics-item">{name}</div>
-                      <div className="characteristics-item">{manufacturer}</div>
-                      <div className="characteristics-item">{country}</div>
-                      <div className="characteristics-item">Картона коробка</div>
-                      <div className="characteristics-item">Картон з покриттям</div>
-                    </div>
-                  </div>
-
-                  <div className="product_amount">
-                    <button >-</button>
-                    <input/>
-                    <button >+</button>
-                  </div>
-
-                  <div className="product-buy">
-                    <button className="purchase">В КОРЗИНУ</button>
-                    <div className="product-price">{price} грн.</div>
+                <div className="product-amount">
+                  <button
+                    className="amount-button small-btn"
+                    onClick={this.handleClick}
+                    name="minus"
+                  >
+                    -
+                  </button>
+                  <input
+                    className="amount-input"
+                    type="number"
+                    value={this.state.amount}
+                    onChange={this.handleChange}
+                    name="amount"
+                  />
+                  <button
+                    className="amount-button small-btn"
+                    onClick={this.handleClick}
+                    name="plus"
+                  >
+                    +
+                  </button>
+                  <div className="product-price">
+                    {`${price} грн.`}
                   </div>
                 </div>
+
+                <button className="purchase btn" onClick={this.purchase}>{this.state.purchaseButtonText}</button>
               </div>
             </div>
           </div>
-        </main>
-        <Footer/>
-      </div>
+        </section>
+        <section className="product-information">
+          <div className="container">
+            <div className="information-wrapper">
+              {text}
+            </div>
+          </div>
+        </section>
+      </main>
     );
   }
 }

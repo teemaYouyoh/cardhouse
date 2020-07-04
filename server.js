@@ -3,7 +3,8 @@ var express = require('express'),
   port = process.env.PORT || 3000,
   cors = require('cors'),
   mongoose = require('mongoose'),
-  Task = require('./api/models/todoListModel'), //created model loading here
+  Product = require('./api/models/productsListModel'), //created model loading here
+  manufacturer = require('./api/models/manufacturersListModel'), //created model loading here
   bodyParser = require('body-parser');
   
   // app.use(function (req, res, next) {
@@ -17,14 +18,14 @@ var express = require('express'),
   
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/Tododb'); 
+mongoose.connect('mongodb://localhost/cardhouse');
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
-var routes = require('./api/routes/todoListRoutes'); //importing route
+var routes = require('./api/routes/index'); //importing route
 routes(app); //register the route
 
 

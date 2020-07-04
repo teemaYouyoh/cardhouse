@@ -1,6 +1,7 @@
 const ADD_PRODUCTS = 'ADD_PRODUCTS';
+const ADD_PRODUCT = 'ADD_PRODUCT';
 
-const productsList = (state = [], { type, products }) => {
+export const productsList = (state = [], { type, products }) => {
   switch (type) {
   case ADD_PRODUCTS: return products;
   default:
@@ -8,4 +9,15 @@ const productsList = (state = [], { type, products }) => {
   }
 };
 
-export default productsList;
+export const cart = (state = [], { type, product }) => {
+  switch (type) {
+  case ADD_PRODUCT: {
+    return [
+      ...state,
+      product,
+    ];
+  }
+  default:
+    return state;
+  }
+};

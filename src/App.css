@@ -1,50 +1,5 @@
-
 @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 
-
-
-/* products */
-/* 
-.product-row{
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.product{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.product a{
-    color: #3c4858;
-}
-
-.product img{
-    width: 240px;
-}
-
-.product .price{
-    margin: 10px 0;
-}
-
-.product .purchase{
-
-font-weight: 700;
-color: white;
-text-decoration: none;
-padding: .8em 1em calc(.8em + 3px);
-border-radius: 3px;
-background: rgb(64,199,129);
-box-shadow: 0 -3px rgb(53,167,110) inset;
-transition: 0.2s;
-}
-
-.product .purchase:hover { background: rgb(53, 167, 110); }
-.product .purchase:active {
-background: rgb(33,147,90);
-box-shadow: 0 3px rgb(33,147,90) inset;
-} */
 
 /* Large Devices, Wide Screens */
 @media only screen and (max-width : 1366px) {
@@ -59,7 +14,6 @@ box-shadow: 0 3px rgb(33,147,90) inset;
 @media only screen and (max-width : 480px) {
     
 }
-
 
 
 /* `````````````````````````````````````````````````````` */

@@ -2,13 +2,22 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import ScrollToTop from 'react-router-scroll-top';
 
 import { addProducts } from './actions/actionsCreator';
 import ShopService from './services/ShopService';
 
 import Start from './components/Start/Start';
 import Shop from './components/Shop/Shop';
+import Cart from './components/Cart/Cart';
+import Purchase from './components/Purchase/Purchase';
 import ProductPage from './components/ProductPage/ProductPage';
+import AboutUs from './components/AboutUs/AboutUs';
+import Bonuses from './components/NewsList/Bonuses/Bonuses';
+import Mailing from './components/NewsList/Mailing/Mailing';
+
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
 
 import './App.css';
 
@@ -31,12 +40,18 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className="wrapper">
+        <ScrollToTop>
+          <Header/>
           <Route path='/' component={Start} exact/>
           <Route path='/shop' component={Shop} exact/>
-          <Route path='/shop/:name' component={Shop} exact/>
           <Route path='/shop/product/:id' component={ProductPage} exact/>
-        </div>
+          <Route path='/about-us' component={AboutUs} exact/>
+          <Route path='/cart' component={Cart} exact/>
+          <Route path='/purchase' component={Purchase} exact/>
+          <Route path='/bonuses' component={Bonuses} exact/>
+          <Route path='/mailing' component={Mailing} exact/>
+          <Footer/>
+        </ScrollToTop>
       </Router>
     );
   }

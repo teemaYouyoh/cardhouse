@@ -1,104 +1,57 @@
 /* eslint-disable max-len */
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-// import { Carousel } from 'react-responsive-carousel';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faCheckSquare, faTruck, faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 import Slider from 'react-slick';
 import '../../../node_modules/slick-carousel/slick/slick.css';
 import '../../../node_modules/slick-carousel/slick/slick-theme.css';
 
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
 import ProductsList from '../ProductsList/ProductsList';
+import FeedbackForm from '../FeedbackForm/FeedbackForm';
 
-import './start.css';
-import '../../App.css';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import './start.scss';
 
 const Start = (props) => {
   const settings = {
     arrows: false,
     dots: true,
     infinite: true,
-    autoplay: false,
+    autoplay: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
     adaptiveHeight: false,
   };
 
-  console.log(props.products);
   return (
-    <section className="products">
-      <Header/>
-      <main>
-        {/* <div className="advantages">
-                    <div className="container">
-
-                        <div className="advantages-item">
-                            <div className="advantages-img">
-                                <FontAwesomeIcon icon={faCheckSquare} />
-                            </div>
-                            <div className="advantages-title">
-                                ЯКІСТЬ
-                            </div>
-                            <div className="advantages-text">
-                                Найкраща якість від вірибника
-                            </div>
-                        </div>
-
-                        <div className="advantages-item">
-                            <div className="advantages-img">
-                                <FontAwesomeIcon icon={faTruck} />
-                            </div>
-                            <div className="advantages-title">
-                                ДОСТАВКА
-                            </div>
-                            <div className="advantages-text">
-                                Швидко доставимо у будь-яке місце України
-                            </div>
-                        </div>
-
-                        <div className="advantages-item">
-                            <div className="advantages-img">
-                                <FontAwesomeIcon icon={faQuestionCircle} />
-                            </div>
-                            <div className="advantages-title">
-                                КОНСУЛЬТАЦІЯ
-                            </div>
-                            <div className="advantages-text">
-                                Цілодобові онлайн-консультанти
-                            </div>
-                        </div>
-                    </div>
-                </div> */}
-
-        <section className="propose">
-          <div className="container">
-            <div className="propose-wrapper">
+    <main>
+      <section className="propose">
+        <div className="container">
+          <div className="propose-wrapper">
+            <h2 className="propose-title">новини</h2>
+            <div className="propose-items">
               <div className="propose-item">
                 <div className="item-image">
-                  <Link to="/shop"><img src="https://decemberboys.com.ua/media/file_manager/allaround/bonus-pt-z.jpg" alt="Бонусы"></img></Link>
+                  <Link to="/bonuses"><img src="https://decemberboys.com.ua/media/file_manager/allaround/bonus-pt-z.jpg" alt="Бонусы"></img></Link>
                 </div>
                 <div className="item-label">
-                  <Link to="/shop">бонусы</Link>
+                  <Link to="/bonuses">бонуси</Link>
                 </div>
                 <div className="item-text">
-                  Покупайте в нашем магазине и зарабатывайте бонусные очки. Тратьте их при вашем следующем заказе и экономьте!
+                  Купуйте в нашому магазині і заробляйте бонусні очки. Витрачайте їх при вашому наступному замовленні та економте!
                 </div>
               </div>
               <div className="propose-item">
                 <div className="item-image">
-                  <Link to="/shop"><img src="https://decemberboys.com.ua/media/file_manager/allaround/newsletter-z.jpg" alt="Рассылка"></img></Link>
+                  <Link to="/mailing"><img src="https://decemberboys.com.ua/media/file_manager/allaround/newsletter-z.jpg" alt="Рассылка"></img></Link>
                 </div>
                 <div className="item-label">
-                  <Link to="/shop">Рассылка</Link>
+                  <Link to="/mailing">розсилка</Link>
                 </div>
                 <div className="item-text">
-                  Подписывайтесь на нашу рассылку: новости, премьеры и купоны на скидку до 20% в каждом письме! 1-2 email в месяц.
+                  Підписуйтесь на нашу розсилку: новини, прем'єри і купони на знижку до 20% в кожному листі! 1-2 email на місяць.
                 </div>
               </div>
               <div className="propose-item">
@@ -106,111 +59,76 @@ const Start = (props) => {
                   <Link to="/shop"><img src="https://media.decemberboys.com.ua/file_manager/allaround/tutorials-slider.jpg" alt="Обучение"></img></Link>
                 </div>
                 <div className="item-label">
-                  <Link to="/shop">Обучение</Link>
+                  <Link to="/shop">магазин</Link>
                 </div>
                 <div className="item-text">
-                  Учитесь. Тренируйтесь. Удивляйте. Обучение close-up фокусам, трюкам с картами и кардистри.
+                  Навчайтесь. Тренуйтесь. Дивуйте. З картами для фокусів та кардистрі, які Ви можете прижбати в нашому магазині.
                 </div>
               </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section className="new-products">
-          <div className="container">
-            <div className="new-products-wrapper">
-              <h2 className="new-products-title">новинки</h2>
-              <div className="new-products-row">
-                <ProductsList count={4} products={props.products}/>
+      <section className="new-products">
+        <div className="container">
+          <div className="new-products-wrapper">
+            <h2 className="new-products-title">новинки</h2>
+            <div className="new-products-row">
+              <ProductsList count={4} products={props.products}/>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="news-slider">
+        <Slider {...settings}>
+          <div>
+            <div className="my-slide_1">
+              <div className="slide-container">
+                <div className="slide-contant">
+                  <img src="https://decemberboys.com.ua/media/file_manager/legacy/slider/dblogosilder.png" alt="logo"/>
+                  <span className="slide-title">Z Polo с секретом от December Boys. Больше, чем мерч.</span>
+                  {/* <Link to="/shop" className="slide-button">купить</Link> */}
+                </div>
               </div>
             </div>
           </div>
-        </section>
-        <section className="news-slider">
-          <Slider {...settings}>
-            <div>
-              <div className="my-slide_1">
-                <div className="slide-container">
-                  <div className="slide-contant">
-                    <img src="https://decemberboys.com.ua/media/file_manager/legacy/slider/dblogosilder.png" alt="logo"/>
-                    <span className="slide-title">Z Polo с секретом от December Boys. Больше, чем мерч.</span>
-                    <Link to="/shop" className="slide-button">купить</Link>
-                  </div>
+          <div>
+            <div className="my-slide_2">
+              <div className="slide-container">
+                <div className="slide-contant">
+                  <img src="https://decemberboys.com.ua/media/file_manager/legacy/slider/dblogosilder.png" alt="logo"/>
+                  <span className="slide-title">Кожаные чехлы для карт DB Holders. Больше, чем аксессуар.</span>
+                  {/* <Link to="/shop" className="slide-button">купить</Link> */}
                 </div>
               </div>
             </div>
-            <div>
-              <div className="my-slide_2">
-                <div className="slide-container">
-                  <div className="slide-contant">
-                    <img src="https://decemberboys.com.ua/media/file_manager/legacy/slider/dblogosilder.png" alt="logo"/>
-                    <span className="slide-title">Кожаные чехлы для карт DB Holders. Больше, чем аксессуар.</span>
-                    <Link to="/shop" className="slide-button">купить</Link>
-                  </div>
+          </div>
+          <div>
+            <div className="my-slide_3">
+              <div className="slide-container">
+                <div className="slide-contant">
+                  <img src="https://decemberboys.com.ua/media/file_manager/legacy/slider/dblogosilder.png" alt="logo"/>
+                  <span className="slide-title">{'Gimmick\'d II. 3 новых гиммика для выноса мозга зрителю.'}</span>
+                  {/* <Link to="/shop" className="slide-button">купить</Link> */}
                 </div>
               </div>
             </div>
-            <div>
-              <div className="my-slide_3">
-                <div className="slide-container">
-                  <div className="slide-contant">
-                    <img src="https://decemberboys.com.ua/media/file_manager/legacy/slider/dblogosilder.png" alt="logo"/>
-                    <span className="slide-title">{'Gimmick\'d II. 3 новых гиммика для выноса мозга зрителю.'}</span>
-                    <Link to="/shop" className="slide-button">купить</Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Slider>
-        </section>
-
-        {/* <div className="advantages">
-                    <div className="container">
-
-                        <div className="advantages-item">
-                            <div className="advantages-img">
-                                <FontAwesomeIcon icon={faCheckSquare} />
-                            </div>
-                            <div className="advantages-title">
-                                ЯКІСТЬ
-                            </div>
-                            <div className="advantages-text">
-                                Найкраща якість від вірибника
-                            </div>
-                        </div>
-
-                        <div className="advantages-item">
-                            <div className="advantages-img">
-                                <FontAwesomeIcon icon={faTruck} />
-                            </div>
-                            <div className="advantages-title">
-                                ДОСТАВКА
-                            </div>
-                            <div className="advantages-text">
-                                Швидко доставимо у будь-яке місце України
-                            </div>
-                        </div>
-
-                        <div className="advantages-item">
-                            <div className="advantages-img">
-                                <FontAwesomeIcon icon={faQuestionCircle} />
-                            </div>
-                            <div className="advantages-title">
-                                КОНСУЛЬТАЦІЯ
-                            </div>
-                            <div className="advantages-text">
-                                Цілодобові онлайн-консультанти
-                            </div>
-                        </div>
-                    </div>
-                </div> */}
-
-      </main>
-
-      <Footer/>
-    </section>
-
+          </div>
+        </Slider>
+      </section>
+      <FeedbackForm/>
+    </main>
   );
+};
+
+Start.propTypes = {
+  products: PropTypes.array,
+};
+
+Start.defaultTypes = {
+  products: [],
 };
 
 export default connect((state) => {

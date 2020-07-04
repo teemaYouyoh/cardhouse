@@ -1,0 +1,9 @@
+@media only screen and (max-width : 480px) {
+    div.MuiDrawer-root.MuiDrawer-modal > div.MuiPaper-root.MuiDrawer-paper.MuiDrawer-paperAnchorLeft.MuiPaper-elevation16 > div > section > div > div > div.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-true {
+        max-width: 130px;
+    }
+
+    div.MuiDrawer-root.MuiDrawer-modal > div.MuiPaper-root.MuiDrawer-paper.MuiDrawer-paperAnchorLeft.MuiPaper-elevation16 > div > section > div {
+        width: 100%;
+    }
+}

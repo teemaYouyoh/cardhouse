@@ -6,6 +6,8 @@ import Slider from '@material-ui/core/Slider';
 import Input from '@material-ui/core/Input';
 import AttachMoney from '@material-ui/icons/AttachMoney';
 
+import './range-slider.css';
+
 const useStyles = makeStyles({
   root: {
     width: 250,
@@ -15,7 +17,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function InputSlider(props) {
+export default function RangeSlider(props) {
   const classes = useStyles();
   const { minPrice, maxPrice, setMaxPrice } = props;
   const [value, setValue] = React.useState(0);
@@ -79,13 +81,13 @@ export default function InputSlider(props) {
   );
 }
 
-InputSlider.propTypes = {
+RangeSlider.propTypes = {
   minPrice: PropTypes.number,
   maxPrice: PropTypes.number,
   setMaxPrice: PropTypes.func,
 };
 
-InputSlider.defaultTypes = {
+RangeSlider.defaultTypes = {
   minPrice: 0,
   maxPrice: 0,
   setMaxPrice: () => {},

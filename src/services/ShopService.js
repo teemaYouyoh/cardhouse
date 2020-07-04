@@ -3,6 +3,15 @@ export default class ShopService {
     this.apiBase = 'http://localhost:3000';
   }
 
+    sendMessage = async (message) => {
+      const response = await fetch(`https://api.telegram.org/bot1073305059:AAGW0XZrt9XIC5WAGzL6lr9gb_0W-kg5hpM/sendMessage?chat_id=-459071785&parse_mode=html&text=${message}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+    }
+
     getData = async (url) => {
       let res = await fetch(`${this.apiBase}${url}`);
 
@@ -16,11 +25,11 @@ export default class ShopService {
     }
 
     getProductsList = () => {
-      return this.getData('/tasks');
+      return this.getData('/products');
     }
 
     getProduct = (id) => {
-      return this.getData(`/tasks/${id}`);
+      return this.getData(`/products/${id}`);
     }
 
     getManufacturers = () => {

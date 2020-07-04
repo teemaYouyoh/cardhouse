@@ -1,0 +1,39 @@
+.bonuses {
+    .bonuses-wrapper {
+
+        .bonuses-title {
+            display: flex;
+            flex-direction: row;
+            align-items: baseline;
+
+            @media only screen and (max-width : 480px) {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            h2 {
+                @media only screen and (max-width : 480px) {
+                    margin-bottom: 0;
+                }
+            }
+
+            h4 {
+                margin-left: 5px;
+
+                @media only screen and (max-width : 480px) {
+                    margin-top: 0;
+                    margin-bottom: 36px;
+                    margin-left: 0;
+                }
+            }
+        }
+
+        .bonuses-image {
+            
+            img {
+                object-fit: cover;
+                width: 100%;
+            }
+        }
+    }
+}

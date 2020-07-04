@@ -35,7 +35,7 @@ module.exports = {
         "no-param-reassign": ["error", { "props": false }],
         "arrow-body-style": ["error", "always"],
         "class-methods-use-this": ["error", { "exceptMethods": ["render"] }],
-        "no-underscore-dangle": ["error", { "allow": ["_id"] }]
+        "no-underscore-dangle": ["error", { "allow": ["_id"] }],
     },
     "parser" : "babel-eslint"
 };

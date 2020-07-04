@@ -3,10 +3,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import ShopService from '../../services/ShopService';
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
 import ProductsList from '../ProductsList/ProductsList';
-import RangeSlider from '../RangeSlider/InputSlider';
+import FiltersPanel from '../FiltersPanel/FiltersPanel';
+import ProductsFilters from '../ProductsFilters/ProductsFilters';
 // import ProductCard from '../ProductCard/ProductCard';
 
 import './shop.scss';
@@ -17,6 +16,7 @@ class Shop extends Component {
     manufacturers: [],
     manufacturer: 'allManufacturers',
     manufacturerInfo: 'United States Playing Card Company - лидер производства игральных карт уже 135 лет.',
+    search: '',
     sort: 'upPrice',
     minPrice: 0,
     maxPrice: 1000,
@@ -62,6 +62,14 @@ class Shop extends Component {
     console.log(manufacturers);
   }
 
+  search = (e) => {
+    e.persist();
+    const { value: search } = e.target;
+    this.setState({
+      search,
+    });
+  }
+
   sortItems = (event = null) => {
     let sort = '';
     const { products } = this.state;
@@ -86,8 +94,11 @@ class Shop extends Component {
   }
 
   filterProducts = (value) => {
+    const { search } = this.state;
+
     return this.state.products.filter((item) => {
       if ((value === 'allManufacturers' || value === item.manufacturer)
+              && (search === '' || item.name.toLowerCase().includes(search.toLowerCase()))
               && item.price >= this.state.minPrice
               && item.price <= this.state.maxPrice) {
         return true;
@@ -128,20 +139,35 @@ class Shop extends Component {
     });
   }
 
-  renderManufacturers = () => {
+  renderManufacturers = (value) => {
     const { manufacturers } = this.state;
 
     return manufacturers.map((item) => {
-      return (
-        <li
-          data-name={item.name}
-          data-information={item.information}
-          onClick={this.selectManufacturer}
-          key={item.name}
-        >
-          {item.name}
-        </li>
-      );
+      if (value === 'list') {
+        return (
+          <li
+            data-name={item.name}
+            data-information={item.information}
+            onClick={this.selectManufacturer}
+            key={item.name}
+          >
+            {item.name}
+          </li>
+        );
+      }
+
+      if (value === 'select') {
+        return (
+          <option
+            data-name={item.name}
+            data-information={item.information}
+            // onClick={this.selectManufacturer}
+            key={item.name}
+          >
+            {item.name}
+          </option>
+        );
+      }
     });
   }
 
@@ -166,18 +192,34 @@ class Shop extends Component {
   render() {
     const { minPriceSlider, maxPriceSlider, manufacturer, manufacturerInfo } = this.state;
     const products = this.filterProducts(manufacturer);
-    const manufacturers = this.renderManufacturers();
+    // const manufacturers = ;
 
     return (
       <>
-        <Header/>
         <main>
           <section className="shop">
             <div className="container">
               <div className="shop-wrapper">
-                <section className="products-filters">
+                <ProductsFilters
+                  minPriceSlider={minPriceSlider}
+                  maxPriceSlider={maxPriceSlider}
+                  renderManufacturers={this.renderManufacturers}
+                  search={this.search}
+                  selectManufacturer={this.selectManufacturer}
+                  sortItems={this.sortItems}
+                  setMaxPrice={this.setMaxPrice}
+                />
+                {/* <section className="products-filters">
+                  <h4>Пошук</h4>
+                  <hr/>
+                  <input
+                    className="search"
+                    onChange={this.search}
+                    type="text"
+                    placeholder="Введіть назву товару"
+                  />
 
-                  <h3>Виробники</h3>
+                  <h4>Виробники</h4>
                   <hr/>
                   <ul>
                     <li
@@ -187,25 +229,46 @@ class Shop extends Component {
                     >
                       Всі виробники
                     </li>
-                    { manufacturers }
+                    { this.renderManufacturers('list') }
                   </ul>
 
-                  <h3>Сортування</h3>
+                  <h4>Виробники</h4>
+                  <hr/>
+                  <select onChange={this.selectManufacturer}>
+                    <option
+                      // onClick={this.selectManufacturer}
+                      data-name="allManufacturers"
+                      data-information="United States Playing Card Company - лидер производства игральных карт уже 135 лет."
+                    >
+                      Всі виробники
+                    </option>
+                    { this.renderManufacturers('select') }
+                  </select>
+
+                  <h4>Сортування</h4>
                   <hr/>
                   <select onChange={this.sortItems}>
                     <option value="upPrice" >Від дешевих до дорогих</option>
                     <option value="downPrice" >Від дорогих до дешевих</option>
                   </select>
 
-                  <h3>Діапазон цін</h3>
+                  <h4>Діапазон цін</h4>
                   <hr/>
                   <RangeSlider
                     setMaxPrice={ this.setMaxPrice }
                     minPrice = { +minPriceSlider }
                     maxPrice = { +maxPriceSlider }
                   />
-
-                </section>
+                </section> */}
+                <FiltersPanel
+                  minPriceSlider={minPriceSlider}
+                  maxPriceSlider={maxPriceSlider}
+                  renderManufacturers={this.renderManufacturers}
+                  search={this.search}
+                  selectManufacturer={this.selectManufacturer}
+                  sortItems={this.sortItems}
+                  setMaxPrice={this.setMaxPrice}
+                />
                 <section className='products-list'>
                   <div className="manufacturers">
                     <img
@@ -230,7 +293,6 @@ class Shop extends Component {
           </section>
 
         </main>
-        <Footer/>
       </>
     );
   }

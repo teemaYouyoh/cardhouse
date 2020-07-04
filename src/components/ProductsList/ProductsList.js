@@ -9,7 +9,7 @@ export default class ProductsList extends Component {
     let { products } = this.props;
 
     if (count !== 0 && products.length > count) {
-      products = products.slice(-count);
+      products = products.slice(-count); // возращает count-елементов с конца
     }
 
     return products.map((item) => {
